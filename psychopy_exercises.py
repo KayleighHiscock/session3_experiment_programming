@@ -3,12 +3,30 @@
 
 ## Exercise A
 # 1. Load pandas and psychopy
+import pandas as pd 
+import psychopy as ps 
+from psychopy import visual
+
 # 2. Load the picture verification simuli file
 #    (look up the .read_csv method of pandas)
+picture_df = pd.read_csv('picture_verification_stimuli.csv')
+#print(picture_df)
+
 # 3. Loop over the item names, and print them on the screen
 #    (you can loop over a single column just like a list!)
+#print(picture_df['item'])
+
 # 4. Now, change your code to show a text stimulus with each item name,
 #     with a 1 second pause in between, instead of using print().
+
+window = visual.Window(size=(400, 400))
+message = visual.TextStim(window)
+
+message.text = picture_df['text']  
+message.draw() 
+window.flip() 
+core.wait(1.0) 
+
 # 5. Loop over the item paths, and use them to create image stimuli;
 #     display each image for 1 second.
 
