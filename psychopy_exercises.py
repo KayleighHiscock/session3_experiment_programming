@@ -5,13 +5,13 @@
 # 1. Load pandas and psychopy
 import pandas as pd 
 import psychopy as ps 
-from psychopy import visual
+from psychopy import visual, core 
 
 # 2. Load the picture verification simuli file
 #    (look up the .read_csv method of pandas)
 picture_df = pd.read_csv('picture_verification_stimuli.csv')
     
-#print(picture_df)
+print(picture_df)
 
 # 3. Loop over the item names, and print them on the screen
 #    (you can loop over a single column just like a list!)
@@ -20,28 +20,32 @@ picture_df = pd.read_csv('picture_verification_stimuli.csv')
 for item in picture_df['item']:
     print(item)
     
-
-
 # 4. Now, change your code to show a text stimulus with each item name,
 #     with a 1 second pause in between, instead of using print().
-for item in picture_df:
-    text = picture_df['text']
        
-window = visual.Window(size=(400, 400))
-message = visual.TextStim(window)
-
-message.text = picture_df['text']  
-message.draw() 
-window.flip() 
-core.wait(1.0) 
-
-
+#window = visual.Window(size=(400, 400))
+#for item in picture_df['item']:
+    #text_stim = visual.TextStim(window, text=item)
+    #text_stim.draw()
+    #window.flip()
+    #core.wait(1.0)
 
 # 5. Loop over the item paths, and use them to create image stimuli;
 #     display each image for 1 second.
 
+window = visual.Window(size=(400, 400))
+for item in range(0, len(picture_df)):
+    picture = picture_df.loc[item, 'image_file']
+    image = visual.ImageStim(window, image=picture)
+    image.draw()
+    window.flip()
+    core.wait(1.0)
+
+
+
 ## Exercise B
 # 1. Load the lexical decision stimuli file 
+picture_df = pd.read_csv('picture_verification_stimuli.csv')
 # 2. Select all the high frequency words (HF)
 #    (you can do this using masks, just like how we selected a single row)
 # 3. Loop over the words, and create a sound stimulus for each
