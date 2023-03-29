@@ -10,12 +10,12 @@ window = visual.Window(size=(400, 400))
 
 # Some examples of visual stimuli
 message = visual.TextStim(window)
-grating = visual.GratingStim(window, tex='sin', mask='gauss', sf=10, name='gabor')
+#grating = visual.GratingStim(window, tex='sin', mask='gauss', sf=10, name='gabor') #No longer available in psychopy
 image = visual.ImageStim(window, image='images/baby.png')
 
 # Some examples of auditory stimuli
-note_c = sound.Sound('C', secs=1.0)
-note_g = sound.Sound('G', secs=1.0)
+# note_c = sound.Sound('C', secs=1.0)
+# note_g = sound.Sound('G', secs=1.0)
 audio = sound.Sound('sounds/HF/baby.wav')
 
 
@@ -23,17 +23,17 @@ audio = sound.Sound('sounds/HF/baby.wav')
 
 message.text = 'Hello'  # Change the message text to 'Hello'
 message.draw()  # This draws the text to the screen buffer; it is not visible yet
-window.flip()  # This 'flips' the screen buffer, so that it actually becomes visible!
-note_c.play()  # Play the C note
+window.flip()  # This 'flips' the screen buffer, so that it actually becomes visible! (you draw on the backside of a two sided screen and then flip it to the front to visualise)
+# note_c.play()  # Play the C note
 core.wait(2.0)  # Wait for 2 seconds
 
 message.text = 'World'
 message.draw()
 window.flip()  # Flipping gives you control over when exactly things appear on the screen
-note_g.play()
-core.wait(2.0)
+# note_g.play()
+core.wait(2.0) # There are other tutorials on how to control the timing (look online) -> this is not the best way to control for reaction times 
 
-grating.draw()  # Draw the Gabor grating
+# grating.draw()  # Draw the Gabor grating
 window.flip()
 core.wait(2.0)
 
